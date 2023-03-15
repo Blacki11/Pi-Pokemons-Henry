@@ -1,0 +1,40 @@
+const axios = require("axios");
+const http = require("http");
+const { Pokemon, Type } = require("../../db.js");
+
+async function postPokCreate(req, res) {
+  try {
+    const atribute = req.body;
+
+    let newPokemon = await Pokemon.create({
+      name: atribute.name.toLowerCase(),
+      weight:
+        atribute.weight !== undefined ? atribute.weight : "Peso desconocido",
+      height:
+        atribute.height !== undefined ? atribute.height : "Altura desconocido",
+      life: atribute.life,
+      attack: atribute.attack,
+      defense: atribute.defense,
+      Speed: atribute.Speed,
+      Special_Defense: atribute.Special_Defense,
+      Special_Attack: atribute.Special_Attack,
+    });
+    // const pokemontable = await Pokemon.create(newPokemon);
+    const foundTypes = await Type.findAll({
+      where: {
+        name: atribute.types,
+      },
+    });
+
+    await newPokemon.setTypes(foundTypes);
+
+    res.status(200).json(newPokemon);
+  } catch (error) {
+    console.log("1");
+    res.status(400).send("error");
+  }
+}
+
+module.exports = {
+  postPokCreate,
+};

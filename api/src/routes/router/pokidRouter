@@ -1,0 +1,11 @@
+const { Router } = require('express');
+const { getPokById } = require('../functionroutes/getPokById')
+
+
+const pokidRouter = Router();
+
+
+
+pokidRouter.get("/:id", getPokById)
+
+module.exports = pokidRouter;

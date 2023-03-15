@@ -1,0 +1,11 @@
+// const { Router } = require('express');
+// const { getPokByName } = require('../functionroutes/getPokByName')
+
+
+// const poknameRouter = Router();
+
+
+
+// poknameRouter.get("/name?=", getPokByName)
+
+// module.exports = poknameRouter;
