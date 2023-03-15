@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Inicio from "./pages/inicio/inicio";
 import LoadPok from "./pages/home/pokemons/loadPok";
@@ -21,10 +16,10 @@ function App() {
       {showNavbar && <Nav />}
       <Routes>
         <Route path="/" element={<Inicio />}></Route>
-        <Route path="Home" element={<LoadPok />}></Route>
-        <Route path="Detail" element={<Detail />}></Route>
-        <Route path="Create" element={<Create />}></Route>
-        <Route path="About" element={<About />}></Route>
+        <Route path="home" element={<LoadPok />}></Route>
+        <Route path="detail/:id" element={<Detail />}></Route>
+        <Route path="create" element={<Create />}></Route>
+        <Route path="about" element={<About />}></Route>
       </Routes>
     </>
   );
