@@ -10,10 +10,11 @@ export default function ShowPok(Props) {
         <Link to="/Detail">{Props.name}</Link>
       </h2>
       <h2>{Props.types}</h2>
-      <hr></hr>
-      <button>
-        <Link to="/About">About</Link>
-      </button>
+      <footer>
+        <h7>
+          <Link to="/About">About</Link>
+        </h7>
+      </footer>
     </div>
   );
 }

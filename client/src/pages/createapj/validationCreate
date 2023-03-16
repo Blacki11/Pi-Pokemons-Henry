@@ -1,0 +1,27 @@
+// Nombre.
+// Imagen.
+// Vida.
+// Ataque.
+// Defensa.
+// Velocidad (si tiene).
+// Altura (si tiene).
+// Peso (si tiene).
+// Posibilidad de seleccionar/agregar varios tipos en simultáneo
+
+export default function Validate(pokemon) {
+  const { name, life, defense, attack, height, weight, speed, type } = pokemon;
+  const errors = {};
+  if (!name || !life || !defense || !attack || type.length === 0) {
+  }
+  if (name.length > 20)
+    if (life > 999)
+      if (defense > 999)
+        if (attack > 999)
+          if (height > 999)
+            if (weight > 999)
+              if (speed > 999)
+                if (type.length > 3) {
+                }
+
+  //validacions template
+}
