@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import "./App.css";
 import Inicio from "./pages/inicio/inicio";
 import Home from "./pages/home/home";
 import Detail from "./pages/home/pokemons/Detail/detail.jsx";
