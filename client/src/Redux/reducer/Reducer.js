@@ -1,16 +1,22 @@
-import { ADD_FAV, DELETE_FAV, FILTER, ORDER } from "../actions/ActionsType";
+import {
+  ADDFAV,
+  DELETEFAV,
+  FILTER,
+  GETPOK,
+  ORDER,
+} from "../actions/ActionsType.js";
 
 const inicialState = {
-  Pokemons: [],
+  pokemons: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    case ADD_FAV:
+    case ADDFAV:
       return {
         ...state,
       };
-    case DELETE_FAV:
+    case DELETEFAV:
       return {
         ...state,
         myFavorites: state.myFavorites.filter(
@@ -21,20 +27,25 @@ const rootReducer = (state = inicialState, action) => {
         ),
       };
     case FILTER:
-      const allCharacterFilter = state.allCharacters?.filter(
-        (gender) => gender.gender === action.payload
+      const Pokemons = state.Pokemons?.filter(
+        (type) => type.type === action.payload
       );
       return {
         ...state,
-        myFavorites: allCharacterFilter,
+        myFavorites: Pokemons,
       };
     case ORDER:
       return {
         ...state,
-        myFavorites:
+        Pokemons:
           action.payload === "Ascendente"
-            ? state.allCharacters.sort((a, b) => a.id - b.id)
-            : state.allCharacters.sort((a, b) => b.id - a.id),
+            ? state.Pokemons.sort((a, b) => a.id - b.id)
+            : state.Pokemons.sort((a, b) => b.id - a.id),
+      };
+    case GETPOK:
+      return {
+        ...state,
+        pokemons: action.payload,
       };
     default:
       return { ...state };
