@@ -2,22 +2,31 @@ import ShowPok from "./showPok";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function LoadPok(props) {
+export default function LoadPok() {
   // const { pokemons } = props;
 
   const pokemons = useSelector((state) => state.pokemons);
 
   return (
     <div>
-      {pokemons ? (
-        pokemons.map((e, index) => (
+      {typeof pokemons === "object" ? (
+        Object.values(pokemons).map((e) => (
           <ShowPok
-            //imagen={e.image}
+            imagen={e.image}
             name={e.name}
-            url={e.url}
-            //type={e.types}
-            key={index}
-            //id={e.id}
+            type={e.types}
+            key={e.id}
+            id={e.id}
+          />
+        ))
+      ) : pokemons ? (
+        pokemons.map((e, id) => (
+          <ShowPok
+            imagen={e.image}
+            name={e.name}
+            type={e.types}
+            key={e.id}
+            id={e.id}
           />
         ))
       ) : (

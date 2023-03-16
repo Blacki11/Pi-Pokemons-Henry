@@ -10,7 +10,8 @@ export default function Home(props) {
 
   useEffect(() => {
     dispatch(getPokemon());
-  }, []);
+  }, [dispatch]);
+  console.log(useEffect, "useeffectHOME");
 
   return (
     <div>

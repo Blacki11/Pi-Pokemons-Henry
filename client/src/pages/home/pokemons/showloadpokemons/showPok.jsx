@@ -4,11 +4,11 @@ import React from "react";
 export default function ShowPok(Props) {
   return (
     <div>
-      <h2>{Props.image}</h2>
+      <img src={Props.imagen} alt={Props.name} />
       <h2>
-        <Link to="/Detail">{Props.name}</Link>
+        <Link to={`/Detail/${Props.id}`}>{Props.name}</Link>
       </h2>
-      <Link to={Props.url}>{Props.url}</Link>
+      <h2>{Props.types}</h2>
     </div>
   );
 }

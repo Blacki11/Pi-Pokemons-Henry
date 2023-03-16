@@ -1,15 +1,34 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actionSearch } from "../../Redux/actions/Actions";
 
 export default function SearchBar(props) {
-  const [personaje, setPersonaje] = useState("");
+  const [pokemon, setPokemon] = useState("");
+  const dispatch = useDispatch();
+  // const pokemon = useSelector((state) => state.onlyPokemon);
   function change(event) {
-    setPersonaje(event.target.value);
+    setPokemon(event.target.value);
   }
+
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(actionSearch(pokemon));
+    setPokemon("");
+  };
   return (
     <div>
-      <input type="search" value={personaje} onChange={change} />
-      <button onClick={() => props.onSearch(personaje)}>Agregar</button>
-      <button onClick={() => props.randomizer()}>radomizer</button>
+      <form onSubmit={submit}>
+        <div>
+          <input
+            type="text"
+            id="searchterm"
+            value={pokemon}
+            onChange={change}
+            placeholder="Encuentra tu pokemon..."
+          />
+          <input type="submit" value="Find!" />
+        </div>
+      </form>
     </div>
   );
 }

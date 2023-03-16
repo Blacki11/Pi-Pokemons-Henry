@@ -1,4 +1,12 @@
-import { ADDFAV, DELETEFAV, FILTER, ORDER, GETPOK } from "./ActionsType";
+import {
+  ADDFAV,
+  DELETEFAV,
+  FILTER,
+  ORDER,
+  GETPOK,
+  SEARCHPOK,
+  DETAILS,
+} from "./ActionsType";
 import axios from "axios";
 
 export const agregarFav = (character) => {
@@ -19,8 +27,26 @@ export function orderCards(id) {
 
 export const getPokemon = () => {
   return async function (dispatch) {
-    const reponse = await axios.get("https://pokeapi.co/api/v2/pokemon");
-    const pokemons = reponse.data.results;
+    const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+    const pokemons = response.data.results;
     dispatch({ type: GETPOK, payload: pokemons });
+  };
+};
+
+export const actionSearch = (character) => {
+  return async function (dispatch) {
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${character}`
+    );
+    const onlyPokemon = response.data;
+    dispatch({ type: SEARCHPOK, payload: onlyPokemon });
+  };
+};
+
+export const getDetail = (id) => {
+  return async function (dispatch) {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const idPokemons = response.data;
+    dispatch({ type: DETAILS, payload: idPokemons });
   };
 };
