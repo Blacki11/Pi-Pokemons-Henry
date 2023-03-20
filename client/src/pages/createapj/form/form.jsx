@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormInput from "../formImput";
+import axios from "axios";
 import "./form.css";
 
 const Form = ({ initialValues, onSubmit }) => {
@@ -14,8 +15,6 @@ const Form = ({ initialValues, onSubmit }) => {
     weight: "",
     specialattack: "",
     specialdefense: "",
-    image: "",
-    type: [],
   });
 
   const validate = (form) => {

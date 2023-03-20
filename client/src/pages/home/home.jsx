@@ -17,11 +17,11 @@ export default function Home(props) {
     <div>
       <hr></hr>
       <LoadPok />
-      <footer>
+      {/* <footer>
         <h7>
           <Link to="/About">About</Link>
         </h7>
-      </footer>
+      </footer> */}
     </div>
   );
 }

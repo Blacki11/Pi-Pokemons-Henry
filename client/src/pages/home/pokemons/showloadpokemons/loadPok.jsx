@@ -10,12 +10,12 @@ export default function LoadPok() {
   return (
     <div>
       {typeof pokemons === "object" ? (
-        Object.values(pokemons).map((e) => (
+        Object.values(pokemons).map((e, index) => (
           <ShowPok
             imagen={e.image}
             name={e.name}
-            type={e.types}
-            key={e.id}
+            type={e.Type}
+            key={index}
             id={e.id}
           />
         ))
@@ -24,7 +24,7 @@ export default function LoadPok() {
           <ShowPok
             imagen={e.image}
             name={e.name}
-            type={e.types}
+            type={e.Type}
             key={e.id}
             id={e.id}
           />

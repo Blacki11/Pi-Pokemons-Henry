@@ -91,15 +91,13 @@ const Create = () => {
     weight: "",
     specialattack: "",
     specialdefense: "",
-    image: "",
-    type: [],
   };
 
   const handleSubmit = (form) => {
     axios
-      .post("localhost:3001/pokemons", form)
+      .post("http://localhost:3001/pokemons", form)
       .then((res) => alert(res))
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   };
 
   return <Form initialValues={initialValues} onSubmit={handleSubmit} />;

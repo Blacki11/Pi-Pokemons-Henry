@@ -27,8 +27,8 @@ export function orderCards(id) {
 
 export const getPokemon = () => {
   return async function (dispatch) {
-    const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
-    const pokemons = response.data.results;
+    const response = await axios.get("http://localhost:3001/pokemons");
+    const pokemons = response.data;
     dispatch({ type: GETPOK, payload: pokemons });
   };
 };
@@ -36,7 +36,7 @@ export const getPokemon = () => {
 export const actionSearch = (character) => {
   return async function (dispatch) {
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${character}`
+      `http://localhost:3001/pokemons?name=${character}`
     );
     const onlyPokemon = response.data;
     dispatch({ type: SEARCHPOK, payload: onlyPokemon });
@@ -45,7 +45,7 @@ export const actionSearch = (character) => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
     const idPokemons = response.data;
     dispatch({ type: DETAILS, payload: idPokemons });
   };

@@ -15,9 +15,9 @@ async function postPokCreate(req, res) {
       life: atribute.life,
       attack: atribute.attack,
       defense: atribute.defense,
-      Speed: atribute.Speed,
-      Special_Defense: atribute.Special_Defense,
-      Special_Attack: atribute.Special_Attack,
+      speed: atribute.Speed,
+      specialattack: atribute.Special_Defense,
+      specialdefense: atribute.Special_Attack,
     });
     // const pokemontable = await Pokemon.create(newPokemon);
     const foundTypes = await Type.findAll({
@@ -31,7 +31,7 @@ async function postPokCreate(req, res) {
     res.status(200).json(newPokemon);
   } catch (error) {
     console.log("1");
-    res.status(400).send("error");
+    res.status(500).send({ Error: error.message });
   }
 }
 
