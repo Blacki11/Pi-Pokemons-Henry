@@ -1,4 +1,4 @@
-import ShowPok from "./showPok";
+import ShowPok from "./showpoke/showPok";
 import React from "react";
 import { useSelector } from "react-redux";
 

@@ -1,0 +1,106 @@
+.cont-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://pbs.twimg.com/media/EuE-3mHWQAATCaK?format=jpg&name=4096x4096");
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-bubble {
+  background-color: transparent;
+  border: transparent;
+  border-radius: 0.4em;
+  padding: 0.5em 2em;
+  cursor: pointer;
+  transition: all 5s ease;
+  font-size: 5em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-bubble::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(101, 234, 135, 0.445);
+  opacity: 0.6;
+  position: absolute;
+  border-radius: 10px;
+  transition: all 3s ease;
+  transform: translateX(-101%);
+  z-index: 1;
+}
+
+.btn-bubble:hover::before {
+  transform: translateX(0);
+  border-radius: 10;
+}
+
+.btn-bubble span {
+  color: rgba(31, 56, 77, 0.788);
+  position: relative;
+  z-index: 5;
+}
+
+body {
+  margin: 0;
+}
+
+/* .landingButton {
+  padding: 1rem 2rem;
+  font-size: 2.4rem;
+  cursor: pointer;
+  border: transparent;
+  background-color: transparent;
+  color: #000000;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.6);
+}
+
+.landingButton:hover {
+  color: blue;
+}
+
+body {
+  margin: 0;
+}
+
+.landingH1 {
+  float: left;
+  margin-block-end: auto;
+}
+
+.landingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://wallpaperaccess.com/full/4046664.jpg");
+  background-size: cover;
+  background-position: center;
+} */
+
+/*EASTER EGG FOR THE ONLY HEIGHT 722-724px */
+/* @media screen and (min-height: 722px) and (max-height: 724px) and (orientation: landscape) {
+  .landingButton {
+    padding: 27px 2px 27px 1px;
+    font-size: 6px;
+    margin-bottom: 57em;
+    margin-left: 8px;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://images6.alphacoders.com/595/595124.jpg");
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+} */

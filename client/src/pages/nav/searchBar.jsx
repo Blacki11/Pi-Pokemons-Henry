@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionSearch } from "../../Redux/actions/Actions";
 
 export default function SearchBar(props) {

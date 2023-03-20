@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import "./landingPage.css";
 
-export default function Inicio() {
+function Inicio() {
   return (
-    <div
-      style={{
-        backgroundImage: `url("https://lh3.googleusercontent.com/05JfZ1ZdyzrRNvhJosUFdcjjJRFE7k2KhmeM2ujqeCbrcrCb1hkq7O_JdUBpQ3r9hi0YeSn4WgmKx3Ai8LHdM2SucxSzl9TRZ4fCAqETJ6WtHgE=w1440-e365")`,
-      }}
-    >
-      <button>
-        <Link to="home">Bienvenido</Link>
-      </button>
+    <div className="cont-btn">
+      {/* <audio autoPlay>
+        <source src="kantopokemon.mp3" type="audio/mp3"></source>
+      </audio> */}
+      <Link to="home">
+        <button className="btn-bubble">
+          <span>Bienvenido Entrenador</span>
+        </button>
+      </Link>
     </div>
   );
 }
+
+export default Inicio;

@@ -15,7 +15,6 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1> POKEMONS </h1>
       <hr></hr>
       <LoadPok />
       <footer>

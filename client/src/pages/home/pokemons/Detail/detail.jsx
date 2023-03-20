@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetail } from "../../../../Redux/actions/Actions";
+import "./detalles.css";
 
 export default function Detail() {
   const { id } = useParams();
@@ -9,23 +10,32 @@ export default function Detail() {
   const pokemon = useSelector((state) => state.pokemons);
   useEffect(() => {
     dispatch(getDetail(id));
-  }, [id]);
+  }); // falta array de dependencia, borrado por recomendacion del propio react?
 
   return (
-    <div>
-      <h1>{pokemon?.name}</h1>
-      <img
-        src={pokemon.sprites?.other["official-artwork"].front_default}
-        alt={pokemon?.name}
-      />
-      <h1>{pokemon.weight ? pokemon.weight : "Peso Desconocido"}</h1>
-      <h1>{pokemon.height ? pokemon.weight : "Altura Desconocido"}</h1>
-      <h1>{pokemon?.Attack}</h1>
-      <h1>{pokemon?.Defense}</h1>
-      <h1>{pokemon.Speed ? pokemon.weight : "Velocidad Desconocido"}</h1>
-      <h1>{pokemon?.Special_Attack}</h1>
-      <h1>{pokemon?.Special_Defense}</h1>
-      <h1>{pokemon?.type}</h1>
+    <div className="conteiner">
+      <div className="detailDiv">
+        <h1>{pokemon?.name}</h1>
+        <img
+          className="rightDetail"
+          src={pokemon.sprites?.other["official-artwork"].front_default}
+          alt={pokemon?.name}
+        />
+        <h3>Peso: {pokemon.weight ? pokemon.weight : "Desconocido"}</h3>
+        <h3>Altura: {pokemon.height ? pokemon.height : "Desconocido"}</h3>
+        <h3>Ataque: {pokemon?.Attack}</h3>
+        <h3>Defensa: {pokemon?.Defense}</h3>
+        <h3>Velocidad: {pokemon.Speed ? pokemon.speed : "Desconocido"}</h3>
+        <h3>
+          Ataque Especial:
+          {pokemon?.Special_Attack}
+        </h3>
+        <h3>
+          Defensa Especial:
+          {pokemon?.Special_Defense}
+        </h3>
+        <h3>Typos: {pokemon?.type}</h3>
+      </div>
     </div>
   );
 }

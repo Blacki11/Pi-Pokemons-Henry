@@ -1,12 +1,4 @@
-import {
-  ADDFAV,
-  DELETEFAV,
-  DETAILS,
-  FILTER,
-  GETPOK,
-  ORDER,
-  SEARCHPOK,
-} from "../actions/ActionsType.js";
+import { DETAILS, GETPOK, SEARCHPOK } from "../actions/ActionsType.js";
 
 const inicialState = {
   pokemons: [],
