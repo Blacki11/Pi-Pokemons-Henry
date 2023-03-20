@@ -1,4 +1,5 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
@@ -8,33 +9,57 @@ const { DataTypes } = require('sequelize');
 // Peso.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('pokemon', {
-    id:{
-      // Testeo pokemon con "uuid" y type sin este, si uuid no da problemas, tambien cambio el de type
-      // type: DataTypes.INTEGER,
-      // autoIncrement: true,
-      // primaryKey: true
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
+  sequelize.define(
+    "pokemon",
+    {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      weight: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      height: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      life: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      attack: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      defense: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      Speed: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      Special_Defense: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      Special_Attack: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      Image: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    life: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    attack: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    defense: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-
-  });
+    { timestamps: false }
+  );
 };

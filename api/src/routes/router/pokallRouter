@@ -1,0 +1,11 @@
+const { Router } = require('express');
+const { getAllPokemons } = require('../functionroutes/getPokemonsAll')
+
+
+const pokallRouter = Router();
+
+
+
+pokallRouter.get("/", getAllPokemons)
+
+module.exports = pokallRouter;

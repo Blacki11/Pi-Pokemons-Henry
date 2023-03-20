@@ -1,0 +1,55 @@
+const axios = require('axios');
+const {Pokemon} = require('../../db.js');
+const {getPokByName} = require('../functionroutes/getPokByName');
+const { copyFunction } = require('./shareFunction/copyFunction.js');
+
+
+
+// const axiosInstance = axios.create({
+//   timeout: 60000 // 5 seconds
+// });
+// uso en caso de tardar demasiado la peticion
+
+async function getAllPokemons(req, res){
+ 
+  const {name} = req.query
+  if(!name){
+    try {
+      var dbpokemon = await Pokemon.findAll()
+      var pokemons1 = [...dbpokemon]
+      for (var i = 1; i <= 151; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}`
+        let response = await axios.get(url)
+          let pokfull = copyFunction(response)
+          pokemons1.push(pokfull)
+     }
+     res.status(200).json(pokemons1)
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  }else{
+    getPokByName(req, res)
+  }
+  
+}
+
+module.exports = {
+  getAllPokemons,
+}
+
+
+    // ESTA FORMA TAMBIEN FUNCIONA, ELIMINAR UNA VEZ SE TERMINE EL PROYECTO
+    // const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=150');
+    // const pokemons = response.data.results;
+    // const pokemonData = [];
+
+    // for (const pokemon of pokemons) {
+    //   const pokemonResponse = await axios.get(pokemon.url);
+    //   const { name, weight } = pokemonResponse.data;
+    //   pokemonData.push({ name, weight });
+    // }
+
+    // res.send(pokemonData);
+    
+  

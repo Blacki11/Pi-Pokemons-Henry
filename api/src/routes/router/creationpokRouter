@@ -1,0 +1,11 @@
+const { Router } = require('express');
+const { postPokCreate } = require('../functionroutes/postPokCreate')
+
+
+const creationpokRouter = Router();
+
+
+
+creationpokRouter.post("/", postPokCreate)
+
+module.exports = creationpokRouter;

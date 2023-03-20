@@ -1,0 +1,11 @@
+const { Router } = require('express');
+const { getTypes } = require('../functionroutes/getTypes')
+
+
+const allTypes = Router();
+
+
+
+allTypes.get("/", getTypes)
+
+module.exports = allTypes;

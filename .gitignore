@@ -71,8 +71,13 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+<<<<<<< HEAD
 atenerencuenta.txt
 borrador.txt
+=======
+borrador.txt
+atenerencuenta.txt
+>>>>>>> routes
 testing.js
 
 # parcel-bundler cache (https://parceljs.org/)
