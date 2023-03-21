@@ -9,15 +9,15 @@ export default function Detail() {
   const dispatch = useDispatch();
   const pokemon = useSelector((state) => state.pokemons);
   console.log(pokemon);
+
   useEffect(() => {
     dispatch(getDetail(id));
-  }); // falta array de dependencia, borrado por recomendacion del propio react?
+  }, []); // falta array de dependencia, borrado por recomendacion del propio react?
 
   const type = pokemon.Type ? pokemon.Type.join(" / ") : "loading";
   const name = pokemon.name
     ? pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
     : "loading";
-  console.log(name, type);
 
   return (
     <div className="conteiner">

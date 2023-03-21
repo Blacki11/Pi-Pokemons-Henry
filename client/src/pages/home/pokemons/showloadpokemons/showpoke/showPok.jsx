@@ -3,7 +3,6 @@ import React from "react";
 import "./showingpokemon.css";
 
 export default function ShowPok(Props) {
-  console.log(Props);
   const type = Props.type ? Props.type.join(" / ") : "loading";
   return (
     <div className="">

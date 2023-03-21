@@ -1,40 +1,46 @@
 import ShowPok from "./showpoke/showPok";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import { Pagination } from "../../Paginacion/pagination";
 
 export default function LoadPok() {
-  // const { pokemons } = props;
-
-  const pokemons = useSelector((state) => state.pokemons);
+  const [pokPage, setpokPage] = useState(12);
+  const [currentPage, setcurrentPage] = useState(1);
+  const pokemons = useSelector((state) => state.pokemonfilter);
+  const totalPokemons = pokemons?.length;
+  const lastListPok = currentPage * pokPage;
+  const firsListPok = lastListPok - pokPage;
 
   return (
     <div>
-      {typeof pokemons === "object" ? (
-        Object.values(pokemons).map((e, index) => (
-          <ShowPok
-            imagen={e.image}
-            name={e.name}
-            type={e.Type}
-            key={index}
-            id={e.id}
-          />
-        ))
-      ) : pokemons ? (
-        pokemons.map((e, id) => (
-          <ShowPok
-            imagen={e.image}
-            name={e.name}
-            type={e.Type}
-            key={e.id}
-            id={e.id}
-          />
-        ))
+      {Array.isArray(pokemons) ? (
+        pokemons
+          .map((e, index) => (
+            <ShowPok
+              imagen={e.image}
+              name={e.name}
+              type={e.Type}
+              key={index}
+              id={e.id}
+            />
+          ))
+          .slice(firsListPok, lastListPok)
       ) : (
-        <h2>
-          La primera generacion pokemon desaparecio, Porfavor contacta a
-          administracion para ayudarlos
-        </h2>
+        <ShowPok
+          imagen={pokemons.image}
+          name={pokemons.name}
+          type={pokemons.Type}
+          key={pokemons.id}
+          id={pokemons.id}
+        />
       )}
+      <Pagination
+        pokPage={pokPage}
+        currentPage={currentPage}
+        setcurrentPage={setcurrentPage}
+        totalPokemons={totalPokemons}
+      />
     </div>
   );
 }

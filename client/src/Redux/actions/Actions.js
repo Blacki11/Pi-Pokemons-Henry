@@ -19,8 +19,8 @@ export const eliminarFav = (id) => {
 export const filterCards = (status) => {
   return { type: FILTER, payload: status };
 };
-export function orderCards(id) {
-  return { type: ORDER, payload: id };
+export function orderCards(pokemon) {
+  return { type: ORDER, payload: pokemon };
 }
 
 // ---------------------------------------------------------------------------------------------------// ---------------------------------------------------------------------------------------------------// ---------------------------------------------------------------------------------------------------// ---------------------------------------------------------------------------------------------------// ---------------------------------------------------------------------------------------------------// ---------------------------------------------------------------------------------------------------
@@ -39,6 +39,7 @@ export const actionSearch = (character) => {
       `http://localhost:3001/pokemons?name=${character}`
     );
     const onlyPokemon = response.data;
+    const arrayonlyPokemon = Object.values(onlyPokemon);
     dispatch({ type: SEARCHPOK, payload: onlyPokemon });
   };
 };
