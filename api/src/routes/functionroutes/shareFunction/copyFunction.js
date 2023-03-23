@@ -2,7 +2,7 @@ const copyFunction = (obj) => {
   const responsive = obj.data;
   const newPokemon = {
     name: responsive.name,
-    Type: responsive.types.map((e) => e.type.name),
+    types: responsive.types.map((e) => e.type.name),
     weight:
       responsive.weight.toString().length !== 0
         ? responsive.weight
@@ -19,6 +19,7 @@ const copyFunction = (obj) => {
     Special_Attack: responsive.stats[4].base_stat,
     image: responsive.sprites.other["official-artwork"].front_default,
     id: responsive.id,
+    Created: false,
   };
   return newPokemon;
 };

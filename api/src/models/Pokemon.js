@@ -24,11 +24,11 @@ module.exports = (sequelize) => {
         unique: true,
       },
       weight: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       height: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       life: {
@@ -44,20 +44,25 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       Speed: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      Special_Defense: {
+      SpecialDefense: {
         type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      Special_Attack: {
-        type: DataTypes.INTEGER,
+      SpecialAttack: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       Image: {
         type: DataTypes.STRING,
         unique: true,
+      },
+      Created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     { timestamps: false }

@@ -1,37 +1,55 @@
 const axios = require("axios");
 const http = require("http");
 const { Pokemon, Type } = require("../../db.js");
+const { Op } = require("sequelize");
 
 async function postPokCreate(req, res) {
-  try {
-    const atribute = req.body;
+  const numerosPokemon = /^[0-9]+$/i;
 
-    let newPokemon = await Pokemon.create({
-      name: atribute.name.toLowerCase(),
-      weight:
-        atribute.weight !== undefined ? atribute.weight : "Peso desconocido",
-      height:
-        atribute.height !== undefined ? atribute.height : "Altura desconocido",
-      life: atribute.life,
-      attack: atribute.attack,
-      defense: atribute.defense,
-      speed: atribute.Speed,
-      specialattack: atribute.Special_Defense,
-      specialdefense: atribute.Special_Attack,
-    });
-    // const pokemontable = await Pokemon.create(newPokemon);
+  try {
+    const pokemon = req.body;
+    console.log(pokemon.type);
+
+    let newPokemon = {
+      name: pokemon.name.toLowerCase(),
+      weight: numerosPokemon.test(pokemon.weight)
+        ? pokemon.weight
+        : "Peso Desconocido",
+      height: numerosPokemon.test(pokemon.height)
+        ? pokemon.height
+        : "Altura Desconocido",
+      life: pokemon.life,
+      attack: pokemon.attack,
+      defense: pokemon.defense,
+      Speed: numerosPokemon.test(pokemon.Speed)
+        ? pokemon.Speed
+        : "Velocidad Desconocido",
+      SpecialAttack: numerosPokemon.test(pokemon.SpecialAttack)
+        ? pokemon.SpecialAttack
+        : "Ataque Especial Desconocido",
+      SpecialDefense: numerosPokemon.test(pokemon.SpecialDefense)
+        ? pokemon.SpecialDefense
+        : "Defensa Especial Desconocido",
+      Image: pokemon.Image,
+      Type: pokemon.type,
+    };
+
+    const pokdb = await Pokemon.create(newPokemon);
+
     const foundTypes = await Type.findAll({
       where: {
-        name: atribute.types,
+        name: {
+          [Op.in]: pokemon.type,
+        },
       },
     });
 
-    await newPokemon.setTypes(foundTypes);
+    await pokdb.setTypes(foundTypes);
 
     res.status(200).json(newPokemon);
   } catch (error) {
-    console.log("1");
-    res.status(500).send({ Error: error.message });
+    console.log(error);
+    res.status(400).send({ Error: error.message });
   }
 }
 
