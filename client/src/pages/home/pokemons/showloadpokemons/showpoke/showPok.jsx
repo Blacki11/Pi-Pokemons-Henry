@@ -3,14 +3,17 @@ import React from "react";
 import "./showingpokemon.css";
 
 export default function ShowPok(Props) {
-  const type = Props.type ? Props.type.join(" / ") : "loading";
+  const createType = isNaN(Props.id)
+    ? Props.type?.map((e) => e.name).join(" / ")
+    : Props.type?.join(" / ");
+
   return (
     <div className="">
       <img src={Props.imagen} alt={Props.name} />
       <h3 className="showName">
         <Link to={`/Detail/${Props.id}`}>{Props.name}</Link>
       </h3>
-      <h5 className="showType ">{type}</h5>
+      <h5 className="showType ">{createType}</h5>
     </div>
   );
 }

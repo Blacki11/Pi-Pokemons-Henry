@@ -91,13 +91,25 @@ const Create = () => {
     weight: "",
     specialattack: "",
     specialdefense: "",
+    image: "",
   };
 
   const handleSubmit = (form) => {
     axios
       .post("http://localhost:3001/pokemons", form)
-      .then((res) => alert(res))
-      .catch((err) => console.log(err));
+      .then((res) =>
+        alert(
+          "Tu Pokemon a sido creado con exito, buscalo por su nombre, o en la home"
+        )
+      )
+      .catch((err) => {
+        const error = err;
+        console.log(
+          error.message,
+          "Este error aparecera en consola, si es asi entonces completa lo que falta, en caso de que lo hayas hecho, contacta con un administrador"
+        );
+        alert("Porfavor, completa lo faltante");
+      });
   };
 
   return <Form initialValues={initialValues} onSubmit={handleSubmit} />;

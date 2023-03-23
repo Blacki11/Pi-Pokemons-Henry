@@ -28,35 +28,59 @@ const rootReducer = (state = inicialState, action) => {
     //     ),
     //   };
     case FILTER:
-      const filterPokemon = state.pokemons?.filter(
-        (type) =>
-          type.Type.sort().toString() === action.payload.sort().toString()
-      );
-      console.log(
-        filterPokemon,
-        "FILTRO",
-        action.payload.sort().toString(),
-        "ACTIONPAYLOAD",
-        state.pokemons[0].Type.sort().toString(),
-        "TIPOPOKEMON"
-      );
-      return {
-        ...state,
-        pokemonfilter: filterPokemon,
-      };
+      if (action.payload === "ALL") {
+        const pokemons = [...state.pokemons];
+        return { ...state, pokemonfilter: pokemons };
+      }
+      if (action.payload === "BD") {
+        console.log("ENTRA AL BD", state.pokemons.Created);
+        const filterBD = state.pokemons?.filter((BD) => BD.Created === true);
+        return {
+          ...state,
+          pokemonfilter: filterBD,
+        };
+      } else if (action.payload === "API") {
+        console.log("ENTRA AL API", state.pokemons.Created);
+        const filterAPI = state.pokemons?.filter(
+          (API) => API.Created === false
+        );
+        return {
+          ...state,
+          pokemonfilter: filterAPI,
+        };
+      } else {
+        const filterPokemon = state.pokemonfilter?.filter(
+          (type) =>
+            type.Type.sort().toString() === action.payload.sort().toString()
+        );
+        return {
+          ...state,
+          pokemonfilter: filterPokemon,
+        };
+      }
+
     case ORDER:
       const nameOrder = action.payload;
-      if (nameOrder === "Select") {
-        return { ...state };
+      if (nameOrder === "ataquemenormayor") {
+        const ataque = [...state.pokemonfilter].sort(
+          (a, b) => a.attack - b.attack
+        );
+        return { ...state, pokemonfilter: ataque, nameOrder };
       }
-      if (nameOrder === "Ascendente") {
-        const ascendente = [...state.pokemons].sort((a, b) =>
+      if (nameOrder === "ataquemayormenor") {
+        const ataque = [...state.pokemonfilter].sort(
+          (a, b) => b.attack - a.attack
+        );
+        return { ...state, pokemonfilter: ataque, nameOrder };
+      }
+      if (nameOrder === "ascendente") {
+        const ascendente = [...state.pokemonfilter].sort((a, b) =>
           a.name.localeCompare(b.name)
         );
         return { ...state, pokemonfilter: ascendente, nameOrder };
       }
-      if (nameOrder === "Descendiente") {
-        const desendente = [...state.pokemons].sort((a, b) =>
+      if (nameOrder === "descendiente") {
+        const desendente = [...state.pokemonfilter].sort((a, b) =>
           b.name.localeCompare(a.name)
         );
         return { ...state, pokemonfilter: desendente, nameOrder };

@@ -39,7 +39,6 @@ export const actionSearch = (character) => {
       `http://localhost:3001/pokemons?name=${character}`
     );
     const onlyPokemon = response.data;
-    const arrayonlyPokemon = Object.values(onlyPokemon);
     dispatch({ type: SEARCHPOK, payload: onlyPokemon });
   };
 };

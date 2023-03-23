@@ -11,7 +11,7 @@ export default function LoadPok() {
   const totalPokemons = pokemons?.length;
   const lastListPok = currentPage * pokPage;
   const firsListPok = lastListPok - pokPage;
-
+  console.log("LOADPOKEMON");
   return (
     <div>
       {Array.isArray(pokemons) ? (
@@ -20,7 +20,7 @@ export default function LoadPok() {
             <ShowPok
               imagen={e.image}
               name={e.name}
-              type={e.Type}
+              type={e.types}
               key={index}
               id={e.id}
             />

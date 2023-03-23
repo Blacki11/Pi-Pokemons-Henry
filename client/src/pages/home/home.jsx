@@ -6,59 +6,38 @@ import { getPokemon } from "../../Redux/actions/Actions";
 import { filterCards } from "../../Redux/actions/Actions";
 import { OrderPok } from "./pokemons/orderandfilter/order";
 import { orderCards } from "../../Redux/actions/Actions";
+import { Filtro } from "./pokemons/Filter/filter";
 
 export default function Home(props) {
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState([]);
 
   useEffect(() => {
     dispatch(getPokemon());
   }, [dispatch]);
-  const onsaveFilter = (e) => {
-    const options = [...e.target.selectedOptions];
-    const values = options.map((option) => option.value);
-    dispatch(filterCards(values));
-  };
-  const onOrder = (e) => {
-    dispatch(orderCards(e.target.value));
-  };
 
-  const onFilter = () => {
-    dispatch(filterCards(filter));
+  const onOrder = (input) => {
+    dispatch(orderCards(input));
+  };
+  const OnFilter = (e) => {
+    dispatch(filterCards(e));
+  };
+  const filter = (input) => {
+    dispatch(filterCards(input));
   };
 
   return (
     <div>
-      <div>
-        <select onChange={onOrder}>
-          <option value="Select">Select</option>
-          <option value="Ascendente">Ascendente</option>
-          <option value="Descendiente">Descendiente</option>
-        </select>
-      </div>
       <label>
-        <select onChange={onsaveFilter} multiple>
-          <option value="filtra">Filter</option>
-          <option value="normal">Normal</option>
-          <option value="fighting">Lucha</option>
-          <option value="flying">Volador</option>
-          <option value="poison">Veneno</option>
-          <option value="ground">Tierra</option>
-          <option value="rock">Roca</option>
-          <option value="bug">Bicho</option>
-          <option value="ghost">Fantasma</option>
-          <option value="steel">Acero</option>
-          <option value="fire">Fuego</option>
-          <option value="water">Agua</option>
-          <option value="grass">Planta</option>
-          <option value="electric">Electrico</option>
-          <option value="psychic">Psiquico</option>
-          <option value="ice">hielo</option>
-          <option value="dragon">dragon</option>
-          <option value="createpokemon">Pokemons-Creados</option>
-          <option value="apipokemon">Pokedex</option>
+        <OrderPok onChange={onOrder} />
+      </label>
+      <label>
+        <select onChange={OnFilter} defaultValue="Select">
+          <option value="Select">Select</option>
+          <option value="API">Pokemons</option>
+          <option value="BD">Pokemons Creados</option>
         </select>
       </label>
+      <Filtro onChange={filter} onClick={OnFilter}></Filtro>
       <hr></hr>
       <LoadPok />
       {/* <footer>

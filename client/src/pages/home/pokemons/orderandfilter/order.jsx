@@ -1,28 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import LoadPok from "../showloadpokemons/loadPok";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { orderCards } from "../../../../Redux/actions/Actions";
 
-export const OrderPok = () => {
-  const pokemons = useSelector((state) => state.pokemons);
-
-  const onOrder = (e) => {
-    if (e.target.value === "Select") {
-      return pokemons;
-    }
-    if (e.target.value === "Ascendente") {
-    }
-    if (e.target.value === "Descendiente") {
-      pokemons.map((e) => e.name).sort((a, b) => a.localeCompare(b));
-      console.log(<LoadPok></LoadPok>);
-    }
+export const OrderPok = ({ onChange }) => {
+  const handleOrder = (e) => {
+    e.preventDefault();
+    onChange(e.target.value);
   };
 
   return (
     <div>
-      <select onChange={onOrder}>
-        <option value="Select">Select</option>
-        <option value="Ascendente">Ascendente</option>
-        <option value="Descendiente">Descendiente</option>
+      <select onChange={handleOrder} defaultValue="Select">
+        <option value="select">Select</option>
+        <option value="ascendente">Nombre A-Z</option>
+        <option value="descendiente">Nombre Z-A</option>
+        <option value="ataquemayormenor">Ataque Mayor-Menor</option>
+        <option value="ataquemenormayor">Ataque Menor-Mayor</option>
       </select>
     </div>
   );
