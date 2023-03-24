@@ -37,16 +37,18 @@ export const Filtro = ({ onChange, onClick }) => {
     }
   };
   return (
-    <div className="multiselect">
-      <button onClick={onsaveFilter}>Filtrar</button>
-      <button onClick={cleanign} value="ALL">
+    <div className="multiselect1">
+      <button onClick={onsaveFilter} className="multiselect1">
+        Filtrar
+      </button>
+      <button onClick={cleanign} value="ALL" className="multiselect1">
         Limpiar Filtro{" "}
       </button>
-      <div className="multiselect-header" onClick={toggleOptions}>
+      <div className="multiselect-header1" onClick={toggleOptions}>
         <span>Selecciona las opciones:</span>
         <span>{selected.join(", ") || ""}</span>
       </div>
-      <ul className={`multiselect-options ${isOpen ? "open" : ""}`}>
+      <ul className={`multiselect-options1 ${isOpen ? "open" : ""}`}>
         <li>
           <label>
             <input type="checkbox" value="normal" onClick={handleOptionClick} />

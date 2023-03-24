@@ -1,11 +1,12 @@
-.multiselect {
+.multiselect1 {
   justify-content: center;
   align-items: center;
-
+  background-color: #131b26bd;
   width: 200px;
+  color: #f4f275;
 }
 
-.multiselect-header {
+.multiselect-header1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,27 +15,31 @@
   cursor: pointer;
 }
 
-.multiselect button {
+.multiselect1 button {
   border: 1px solid gray;
-  background-color: #f7f7f7;
-  border-radius: 4px;
+  background-color: #131b26bd;
+  border-radius: 10px;
   padding: 4px 8px;
   font-size: 14px;
-  margin-left: 8px;
   cursor: pointer;
 }
-.multiselect button:hover {
+
+.multiselect1 button:hover {
   background-color: #e0e0e0;
 }
 
-.multiselect-options {
+.multiselect-options1 {
   display: none;
   margin: 0;
   padding: 0;
+  background-color: #131b26bd;
   list-style: none;
   border: 1px solid #ccc;
+  position: absolute;
+  z-index: 1000;
 }
-.multiselect-options input[type="checkbox"]:checked + label:before {
+
+.multiselect-options1 input[type="checkbox"]:checked + label:before {
   content: "✔";
   font-weight: bold;
   font-size: 14px;
@@ -45,22 +50,27 @@
   left: 8px;
 }
 
-.multiselect-options input[type="checkbox"] {
+.multiselect-options1 input[type="checkbox"] {
   margin-right: 8px;
 }
-.multiselect-options label {
-  display: block;
+
+.multiselect-options1 label {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
   padding: 8px;
-  border-bottom: 1px solid gray;
+  border: 1px solid #ccc;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.multiselect-options label:hover {
+.multiselect-options1 label:hover {
   background-color: #f5f5f5;
 }
 
-.multiselect-options.open {
+.multiselect-options1.open {
   display: block;
 }
 /* .filterselect {

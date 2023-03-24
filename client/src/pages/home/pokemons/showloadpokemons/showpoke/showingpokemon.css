@@ -1,22 +1,39 @@
-.showCard {
-  display: block;
-  padding: 0.5em;
-  margin-left: 2em;
-  margin-bottom: 2em;
-  width: 12rem;
-  height: 19rem;
-  float: left;
-  border: 1px solid black;
+.cajasloadpok {
+  width: 300px;
+  height: 500px;
+  border-radius: 50px;
+  background-color: #131b26bd;
+  margin: 15px;
+  text-align: center;
+  transition: 1s;
+}
+.cajasloadpok:hover {
+  height: 530px;
+  width: 330px;
+  border-radius: 90px;
+  background-color: #131b26;
 }
 
-.showName {
-  border: 1px solid black;
-  text-align: center;
-  margin-top: 11em;
+.colorname {
+  color: #f4f275;
+  background-color: #131b26e4;
+  /* border: 2px solid rgb(227, 241, 137); */
+  border-radius: 100px;
+  margin: 1px;
+  padding: 20px;
+}
+.colortype {
+  margin: 7px;
+  border-radius: 20px;
+  padding: 8px 8px;
+  background-color: #131b26b0;
+  /* border: 2px solid rgb(137, 160, 241); */
+  color: #fffd79;
 }
 
-.showType {
-  border: 1px solid black;
-  text-align: center;
-  margin-top: 1em;
+.showImagen {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  margin-top: 70px;
 }

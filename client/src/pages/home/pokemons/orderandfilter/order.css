@@ -1,0 +1,34 @@
+.caja1 {
+  margin: auto auto auto auto;
+  border: 1px solid #d9d9d9;
+  height: 30px;
+  overflow: hidden;
+  width: 230px;
+  position: relative;
+}
+.select1 {
+  background: #131b26bd;
+  color: #f4f275;
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  width: 250px;
+}
+.select1:focus {
+  outline: none;
+}
+
+.caja1::after {
+  content: "\025be";
+  display: table-cell;
+  padding-top: 7px;
+  text-align: center;
+  font-size: 2em;
+  width: 30px;
+  height: 30px;
+  background-color: #eeeeee00;
+  position: absolute;
+  top: -18px;
+  right: 0px;
+  pointer-events: none;
+}

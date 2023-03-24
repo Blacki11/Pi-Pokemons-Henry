@@ -1,0 +1,13 @@
+.loadpokDiv {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: transparent;
+  padding: 20px;
+
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}

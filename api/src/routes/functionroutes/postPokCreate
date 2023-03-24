@@ -8,7 +8,6 @@ async function postPokCreate(req, res) {
 
   try {
     const pokemon = req.body;
-    console.log(pokemon.type);
 
     let newPokemon = {
       name: pokemon.name.toLowerCase(),
@@ -31,7 +30,7 @@ async function postPokCreate(req, res) {
         ? pokemon.SpecialDefense
         : "Defensa Especial Desconocido",
       Image: pokemon.Image,
-      Type: pokemon.type,
+      type: pokemon.type,
     };
 
     const pokdb = await Pokemon.create(newPokemon);

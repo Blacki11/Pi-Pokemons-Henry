@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { orderCards } from "../../../../Redux/actions/Actions";
+import React from "react";
+import "./order.css";
 
 export const OrderPok = ({ onChange }) => {
   const handleOrder = (e) => {
@@ -9,9 +8,9 @@ export const OrderPok = ({ onChange }) => {
   };
 
   return (
-    <div>
-      <select onChange={handleOrder} defaultValue="Select">
-        <option value="select">Select</option>
+    <div className="caja1">
+      <select onChange={handleOrder} defaultValue="Ordena" className="select1">
+        <option value="select">Ordena</option>
         <option value="ascendente">Nombre A-Z</option>
         <option value="descendiente">Nombre Z-A</option>
         <option value="ataquemayormenor">Ataque Mayor-Menor</option>

@@ -1,5 +1,6 @@
 import "./pagination.css";
 import React from "react";
+import "./pagination.css";
 
 export const Pagination = ({
   pokPage,
@@ -7,25 +8,21 @@ export const Pagination = ({
   setcurrentPage,
   totalPokemons,
 }) => {
-  //CAMBIAR EL A E BOTTON, PARA QUE SEA USO DEL DISEABLE
-
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPokemons / pokPage); i++) {
     pageNumbers.push(i);
   }
+
   const handleNext = () => {
     if (currentPage < Math.ceil(totalPokemons / pokPage)) {
       setcurrentPage(currentPage + 1);
-    } else {
-      return currentPage;
     }
   };
+
   const handlePrev = () => {
     if (currentPage > 1) {
       setcurrentPage(currentPage - 1);
-    } else {
-      return currentPage;
     }
   };
 
@@ -34,18 +31,35 @@ export const Pagination = ({
   };
 
   return (
-    <>
+    <div>
       <nav>
-        <a onClick={handlePrev}>PREV PAGE</a>
-        <ul>
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className="paginationbutton"
+        >
+          PREV PAGE
+        </button>
+        <ul className="pagination">
           {pageNumbers.map((page) => (
             <li key={page}>
-              <a onClick={() => handlePage(page)}>{page}</a>
+              <a
+                onClick={() => handlePage(page)}
+                className={currentPage === page ? "active" : ""}
+              >
+                {page}
+              </a>
             </li>
           ))}
         </ul>
-        <a onClick={handleNext}>NEXT PAGE</a>
+        <button
+          onClick={handleNext}
+          disabled={currentPage === Math.ceil(totalPokemons / pokPage)}
+          className="paginationbutton"
+        >
+          NEXT PAGE
+        </button>
       </nav>
-    </>
+    </div>
   );
 };
