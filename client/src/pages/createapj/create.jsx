@@ -95,6 +95,7 @@ const Create = () => {
   };
 
   const handleSubmit = (form) => {
+    console.log(form);
     axios
       .post("http://localhost:3001/pokemons", form)
       .then((res) =>

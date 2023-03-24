@@ -1,7 +1,8 @@
 import { useState } from "react";
 import FormInput from "../formImput";
 import "./form.css";
-import { validatenumber } from "./formfunctionvalidate";
+import { validateImage, validatenumber } from "./formfunctionvalidate";
+import { validateType } from "./formfunctionvalidate";
 
 const Form = ({ initialValues, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ const Form = ({ initialValues, onSubmit }) => {
   const [form, setForm] = useState(initialValues);
 
   const [errors, setErrors] = useState({});
-  console.log(form.image);
+  const [errorsType, setErrorsType] = useState({});
 
   const validate = (form) => {
     const nombrePokemon = /^[a-z0-9]{3,10}$/i;
@@ -19,8 +20,12 @@ const Form = ({ initialValues, onSubmit }) => {
           ...errors,
           name: "El nombre debe tener entre 3 y 10 caracteres",
         });
-
+    setErrors(validateImage(form));
     setErrors(validatenumber(form));
+  };
+
+  const validatefortype = (selected) => {
+    setErrorsType(validateType(selected));
   };
 
   const changeHandler = (event) => {
@@ -30,6 +35,22 @@ const Form = ({ initialValues, onSubmit }) => {
     validate({ ...form, [property]: value });
 
     setForm({ ...form, [property]: value });
+  };
+
+  const handleOptionClick = (e) => {
+    const value = e.target.value;
+    const index = selected.indexOf(value);
+
+    if (index === -1) {
+      validatefortype([...selected, value]);
+      setSelected([...selected, value]);
+    } else {
+      setSelected(selected.filter((item) => item !== value));
+    }
+  };
+
+  const toggleOptions = () => {
+    setIsOpen(!isOpen);
   };
 
   const submitHandler = (e) => {
@@ -47,27 +68,23 @@ const Form = ({ initialValues, onSubmit }) => {
       Image: form.image,
       type: selected,
     };
-    console.log(pokemonC, "SUBMITHANDLER FORM");
+
     validate(form);
+
+    validatefortype(selected);
     const primero = Object.values(errors);
     const err = primero.filter((e) => e.toString() !== "");
-    if (err.length !== 0) throw alert("Completa lo que Falta");
-    else onSubmit(pokemonC);
-  };
+    const segundo = Object.values(errorsType);
 
-  const handleOptionClick = (e) => {
-    const value = e.target.value;
-    const index = selected.indexOf(value);
-
-    if (index === -1) {
-      setSelected([...selected, value]);
+    const errtype = segundo.filter((e) => e.toString() !== "");
+    console.log(errtype, "ERROR FILTRADO");
+    if (err.length !== 0) {
+      console.log("ENTRO AL PRIMERO");
+    } else if (errtype.length !== 0) {
+      throw alert("Tienes que elegir entre 1 y 3 Tipos pokemons");
     } else {
-      setSelected(selected.filter((item) => item !== value));
+      onSubmit(pokemonC);
     }
-  };
-
-  const toggleOptions = () => {
-    setIsOpen(!isOpen);
   };
 
   return (
@@ -151,9 +168,8 @@ const Form = ({ initialValues, onSubmit }) => {
         <div className="multiselect-header" onClick={toggleOptions}>
           <span>Eligue el tipo de tu pokemon: </span>
           <span>{selected.join(", ") || ""}</span>
-          <span>{errors.type}</span>
         </div>
-
+        <span>{errorsType.type}</span>
         <ul className={`multiselect-options ${isOpen ? "open" : ""}`}>
           <li>
             <label>

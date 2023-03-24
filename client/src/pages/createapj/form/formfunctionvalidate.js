@@ -62,4 +62,17 @@ export const validatenumber = (form) => {
   return errors;
 };
 
-export const validateimage = (Image) => {};
+export const validateType = (type) => {
+  const errors = {};
+  console.log(type, "TYPEVALIDATIONFUNCTION");
+  if (type.length > 3) {
+    errors.type = "Has elegido demasiados Tipos, Elige hasta 3 Tipos pokemons";
+  } else if (type.length === 0) {
+    errors.type = "Tienes que elegir al menos un Tipo pokemon";
+  } else {
+    errors.type = "";
+  }
+  return errors;
+};
+
+export const validateImage = ({ image }) => {};
