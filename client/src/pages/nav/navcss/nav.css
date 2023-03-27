@@ -1,0 +1,100 @@
+.navcontainer2 {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
+}
+
+.navcontainer {
+  background-color: #131b26;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  padding: 1vh 8%;
+}
+.navLinks {
+  list-style: none;
+}
+
+.navLinks li {
+  display: inline-block;
+  padding: 0 2vw;
+  border: 1px solid #486b9f;
+  margin: 4px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.navLinks li:hover {
+  transform: scale(1.1);
+}
+
+.navLinks a {
+  font-size: 700;
+  color: #fffb00;
+  text-decoration: none;
+}
+
+.fav a {
+  color: #f47575;
+  transition: 1s;
+}
+.fav a:hover {
+  color: #f24242;
+}
+
+.create a {
+  color: #f24242;
+  transition: 1s;
+}
+
+.create a:hover {
+  color: #f47575;
+}
+
+/* .container {
+  max-width: 100em;
+  margin: 0 auto;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: #131b26;
+}
+
+.navLinks li {
+  margin-right: 10px;
+}
+
+.navLinks button {
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #f4f275;
+  transition: 1s;
+}
+
+.navLinks button:hover {
+  background-color: #2c3c529c;
+  font-size: 18px;
+}
+
+.navLinks button a {
+  color: #f4f275;
+  text-decoration: none;
+}
+
+.navLinks button a:hover {
+  text-decoration: underline;
+} */

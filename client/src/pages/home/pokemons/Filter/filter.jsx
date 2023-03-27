@@ -1,10 +1,12 @@
 import React from "react";
 import "./filter.css";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const Filtro = ({ onChange, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState([]);
+  const where = useLocation();
 
   const onsaveFilter = (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ export const Filtro = ({ onChange, onClick }) => {
     onClick(e.target.value);
     setSelected([]);
     const checkboxes = document.querySelectorAll(
-      '.multiselect-options input[type="checkbox"]'
+      '.multiselect-options1 input[type="checkbox"]'
     );
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
@@ -37,18 +39,46 @@ export const Filtro = ({ onChange, onClick }) => {
     }
   };
   return (
-    <div className="multiselect1">
-      <button onClick={onsaveFilter} className="multiselect1">
+    <div
+      className={`${
+        where.pathname === "/Home" ? "multiselect1" : "multiselect1Fav"
+      }`}
+    >
+      <button
+        onClick={onsaveFilter}
+        className={`${
+          where.pathname === "/Home" ? "multiselect1" : "multiselect1Fav"
+        }`}
+      >
         Filtrar
       </button>
-      <button onClick={cleanign} value="ALL" className="multiselect1">
+      <button
+        onClick={cleanign}
+        value="ALL"
+        className={`${
+          where.pathname === "/Home" ? "multiselect1" : "multiselect1Fav"
+        }`}
+      >
         Limpiar Filtro{" "}
       </button>
-      <div className="multiselect-header1" onClick={toggleOptions}>
+      <div
+        className={`${
+          where.pathname === "/Home"
+            ? "multiselect-header1"
+            : "multiselect-header1Fav"
+        }`}
+        onClick={toggleOptions}
+      >
         <span>Selecciona las opciones:</span>
         <span>{selected.join(", ") || ""}</span>
       </div>
-      <ul className={`multiselect-options1 ${isOpen ? "open" : ""}`}>
+      <ul
+        className={`${
+          where.pathname === "/Home"
+            ? "multiselect-options1 " + [isOpen ? "open" : ""]
+            : "multiselect-options1Fav " + [isOpen ? "open" : ""]
+        }`}
+      >
         <li>
           <label>
             <input type="checkbox" value="normal" onClick={handleOptionClick} />

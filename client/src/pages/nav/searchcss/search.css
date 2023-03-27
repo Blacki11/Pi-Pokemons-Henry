@@ -1,0 +1,30 @@
+.disabled-link {
+  pointer-events: none;
+}
+
+.enable-link {
+  pointer-events: all;
+}
+
+.DivSearchbar input {
+  background-color: #6f88ac70;
+  font-size: 16px;
+  height: 1.99em;
+  transition: 1s;
+  border: 1px solid #486b9f;
+}
+
+.DivSearchbar button {
+  font-weight: 700;
+  color: #f4f275;
+  padding: 9px 20px;
+  height: 2.7em;
+  background-color: #131b26;
+  border: 1px solid #486b9f;
+  cursor: pointer;
+}
+
+.DivSearchbar a {
+  text-decoration: none;
+  color: #f4f275;
+}

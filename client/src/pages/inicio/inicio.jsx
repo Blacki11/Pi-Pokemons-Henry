@@ -6,7 +6,7 @@ import "./landingPage.css";
 function Inicio() {
   return (
     <div className="cont-btn">
-      <Link to="home">
+      <Link to="/Home">
         <button className="btn-bubble">
           <span>Bienvenido Entrenador</span>
         </button>

@@ -5,3 +5,5 @@ export const ORDER = "ORDER";
 export const GETPOK = "GETPOK";
 export const SEARCHPOK = "SEARCHPOK";
 export const DETAILS = "DETAILS";
+export const RANDOM = "RANDOM";
+export const RANDOMTEAM = "RANDOMTEAM";

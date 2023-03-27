@@ -8,44 +8,47 @@ async function postPokCreate(req, res) {
 
   try {
     const pokemon = req.body;
+    if (!pokemon.type) {
+      res.status(500).json("Ingrese un Tipo Pokemon");
+    } else {
+      let newPokemon = {
+        name: pokemon.name.toLowerCase(),
+        weight: numerosPokemon.test(pokemon.weight)
+          ? pokemon.weight
+          : "Peso Desconocido",
+        height: numerosPokemon.test(pokemon.height)
+          ? pokemon.height
+          : "Altura Desconocido",
+        life: pokemon.life,
+        attack: pokemon.attack,
+        defense: pokemon.defense,
+        Speed: numerosPokemon.test(pokemon.Speed)
+          ? pokemon.Speed
+          : "Velocidad Desconocido",
+        SpecialAttack: numerosPokemon.test(pokemon.SpecialAttack)
+          ? pokemon.SpecialAttack
+          : "Ataque Especial Desconocido",
+        SpecialDefense: numerosPokemon.test(pokemon.SpecialDefense)
+          ? pokemon.SpecialDefense
+          : "Defensa Especial Desconocido",
+        Image: pokemon.Image,
+        type: pokemon.type,
+      };
 
-    let newPokemon = {
-      name: pokemon.name.toLowerCase(),
-      weight: numerosPokemon.test(pokemon.weight)
-        ? pokemon.weight
-        : "Peso Desconocido",
-      height: numerosPokemon.test(pokemon.height)
-        ? pokemon.height
-        : "Altura Desconocido",
-      life: pokemon.life,
-      attack: pokemon.attack,
-      defense: pokemon.defense,
-      Speed: numerosPokemon.test(pokemon.Speed)
-        ? pokemon.Speed
-        : "Velocidad Desconocido",
-      SpecialAttack: numerosPokemon.test(pokemon.SpecialAttack)
-        ? pokemon.SpecialAttack
-        : "Ataque Especial Desconocido",
-      SpecialDefense: numerosPokemon.test(pokemon.SpecialDefense)
-        ? pokemon.SpecialDefense
-        : "Defensa Especial Desconocido",
-      Image: pokemon.Image,
-      type: pokemon.type,
-    };
+      const pokdb = await Pokemon.create(newPokemon);
 
-    const pokdb = await Pokemon.create(newPokemon);
-
-    const foundTypes = await Type.findAll({
-      where: {
-        name: {
-          [Op.in]: pokemon.type,
+      const foundTypes = await Type.findAll({
+        where: {
+          name: {
+            [Op.in]: pokemon.type,
+          },
         },
-      },
-    });
+      });
 
-    await pokdb.setTypes(foundTypes);
+      await pokdb.setTypes(foundTypes);
 
-    res.status(200).json(newPokemon);
+      res.status(200).json(newPokemon);
+    }
   } catch (error) {
     console.log(error);
     res.status(400).send({ Error: error.message });

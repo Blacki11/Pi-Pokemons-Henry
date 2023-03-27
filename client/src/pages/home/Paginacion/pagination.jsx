@@ -32,11 +32,13 @@ export const Pagination = ({
 
   return (
     <div>
-      <nav>
+      <nav className="navPagination">
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
-          className="paginationbutton"
+          className={`${
+            currentPage === 1 ? "paginationbuttondisable" : "paginationbutton"
+          }`}
         >
           PREV PAGE
         </button>
@@ -55,7 +57,11 @@ export const Pagination = ({
         <button
           onClick={handleNext}
           disabled={currentPage === Math.ceil(totalPokemons / pokPage)}
-          className="paginationbutton"
+          className={`${
+            currentPage === Math.ceil(totalPokemons / pokPage)
+              ? "paginationbuttondisable"
+              : "paginationbutton"
+          }`}
         >
           NEXT PAGE
         </button>

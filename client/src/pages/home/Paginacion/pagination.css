@@ -1,32 +1,30 @@
-nav {
+.navPagination {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-nav ul {
+.navPagination ul {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-nav ul li {
+.navPagination ul li {
   margin: 0 5px;
 }
 
-nav ul li a {
+.navPagination ul li a {
   display: block;
   padding: 10px;
-  border: 2px solid #ccc;
-  background-color: #fff;
-  color: #000;
+
   text-align: center;
   cursor: pointer;
   text-decoration: none;
 }
 
-nav a {
+.navPagination a {
   display: block;
   margin: 0 5px;
   padding: 10px;
@@ -74,10 +72,21 @@ nav a {
   color: #f4f275;
   border-radius: 10px;
   padding: 4px 8px;
-  font-size: 14px;
+  font-size: 20px;
   cursor: pointer;
   transition: 0.5s;
 }
 .paginationbutton:hover {
   background-color: #131b26;
+}
+
+.paginationbuttondisable {
+  border: 1px solid gray;
+  background-color: #131b26bd;
+  color: #f4f275;
+  border-radius: 10px;
+  padding: 4px 8px;
+  font-size: 20px;
+  cursor: not-allowed;
+  transition: 0.5s;
 }

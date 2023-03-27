@@ -45,8 +45,8 @@ export default function Home(props) {
           </select>
         </label>
       </div>
-      <hr></hr>
       <LoadPok />
+      AGREGAR EL FOOTER BIEN
       {/* <footer>
         <h7>
           <Link to="/About">About</Link>

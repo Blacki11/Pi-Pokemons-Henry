@@ -4,86 +4,156 @@ import {
   SEARCHPOK,
   ORDER,
   FILTER,
+  RANDOM,
+  RANDOMTEAM,
+  ADDFAV,
+  DELETEFAV,
 } from "../actions/ActionsType.js";
 
 const inicialState = {
   pokemons: [],
   pokemonfilter: [],
+  pokemonsallfavorite: [],
+  pokemonFavorite: [],
 };
 
 const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
-    // case ADDFAV:
-    //   return {
-    //     ...state,
-    //   };
-    // case DELETEFAV:
-    //   return {
-    //     ...state,
-    //     myFavorites: state.myFavorites.filter(
-    //       (borrar) => borrar.id !== action.payload
-    //     ),
-    //     allCharacters: state.allCharacters.filter(
-    //       (borrar) => borrar.id !== action.payload
-    //     ),
-    //   };
+    case ADDFAV:
+      return {
+        ...state,
+        pokemonsallfavorite: [...state.pokemonFavorite, action.payload],
+        pokemonFavorite: [...state.pokemonFavorite, action.payload],
+      };
+    case DELETEFAV:
+      return {
+        ...state,
+        pokemonFavorite: state.pokemonFavorite.filter(
+          (borrar) => borrar.id !== action.payload
+        ),
+        pokemonsallfavorite: state.pokemonsallfavorite.filter(
+          (borrar) => borrar.id !== action.payload
+        ),
+      };
     case FILTER:
       if (action.payload === "ALL") {
         const pokemons = [...state.pokemons];
-        return { ...state, pokemonfilter: pokemons };
+        const allFavPokemon = [...state.pokemonsallfavorite];
+        return {
+          ...state,
+          pokemonfilter: pokemons,
+          pokemonFavorite: allFavPokemon,
+        };
       }
       if (action.payload === "BD") {
         console.log("ENTRA AL BD", state.pokemons.Created);
         const filterBD = state.pokemons?.filter((BD) => BD.Created === true);
+        const filterBDFav = state.pokemonsallfavorite?.filter(
+          (BD) => BD.Created === true
+        );
         return {
           ...state,
           pokemonfilter: filterBD,
+          pokemonFavorite: filterBDFav,
         };
       } else if (action.payload === "API") {
-        console.log("ENTRA AL API", state.pokemons.Created);
         const filterAPI = state.pokemons?.filter(
+          (API) => API.Created === false
+        );
+        const filterAPIFav = state.pokemonsallfavorite?.filter(
           (API) => API.Created === false
         );
         return {
           ...state,
           pokemonfilter: filterAPI,
+          pokemonFavorite: filterAPIFav,
         };
       } else {
-        const filterPokemon = state.pokemonfilter?.filter(
-          (type) =>
-            type.Type.sort().toString() === action.payload.sort().toString()
+        console.log(
+          state.pokemonFavorite,
+          state.pokemonfilter,
+          action.payload,
+          "TYPOS POKEMONS"
         );
+        const filterforType = state.pokemonfilter?.filter(
+          (type) =>
+            type.types?.sort().toString() === action.payload?.sort().toString()
+        );
+        const filterTypeFavorite = state.pokemonsallfavorite?.filter(
+          (type) =>
+            type.type?.sort().toString() === action.payload?.sort().toString()
+        );
+
         return {
           ...state,
-          pokemonfilter: filterPokemon,
+          pokemonfilter: filterforType,
+          pokemonFavorite: filterTypeFavorite,
         };
       }
 
     case ORDER:
       const nameOrder = action.payload;
       if (nameOrder === "ataquemenormayor") {
-        const ataque = [...state.pokemonfilter].sort(
+        const ataquemenor = [...state.pokemonfilter].sort(
           (a, b) => a.attack - b.attack
         );
-        return { ...state, pokemonfilter: ataque, nameOrder };
+        const ataqueFav = [...state.pokemonsallfavorite].sort(
+          (a, b) => a.attack - b.attack
+        );
+        console.log(ataqueFav, ataquemenor, "ATAQUES MAYORMENOR");
+        return {
+          ...state,
+          pokemonfilter: ataquemenor,
+          nameOrder,
+          pokemonFavorite: ataqueFav,
+          nameOrder,
+        };
       }
       if (nameOrder === "ataquemayormenor") {
-        const ataque = [...state.pokemonfilter].sort(
+        const ataquemayor = [...state.pokemonfilter].sort(
           (a, b) => b.attack - a.attack
         );
-        return { ...state, pokemonfilter: ataque, nameOrder };
+        const ataquefavmayor = [...state.pokemonsallfavorite].sort(
+          (a, b) => b.attack - a.attack
+        );
+        console.log(ataquefavmayor, ataquemayor, "ATAQUES MAYORMENOR");
+        return {
+          ...state,
+          pokemonfilter: ataquemayor,
+          nameOrder,
+          pokemonFavorite: ataquefavmayor,
+          nameOrder,
+        };
       }
       if (nameOrder === "ascendente") {
         const ascendente = [...state.pokemonfilter].sort((a, b) =>
           a.name.localeCompare(b.name)
         );
-        return { ...state, pokemonfilter: ascendente, nameOrder };
+        const ascendenteFav = [...state.pokemonsallfavorite].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        return {
+          ...state,
+          pokemonfilter: ascendente,
+          nameOrder,
+          pokemonFavorite: ascendenteFav,
+          nameOrder,
+        };
       }
       if (nameOrder === "descendiente") {
         const desendente = [...state.pokemonfilter].sort((a, b) =>
           b.name.localeCompare(a.name)
         );
-        return { ...state, pokemonfilter: desendente, nameOrder };
+        const desendenteFav = [...state.pokemonsallfavorite].sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+        return {
+          ...state,
+          pokemonfilter: desendente,
+          nameOrder,
+          pokemonFavorite: desendenteFav,
+          nameOrder,
+        };
       }
     case GETPOK:
       return {
@@ -100,6 +170,16 @@ const rootReducer = (state = inicialState, action) => {
       return {
         ...state,
         pokemons: action.payload,
+      };
+    case RANDOM:
+      return {
+        ...state,
+        pokemonfilter: action.payload,
+      };
+    case RANDOMTEAM:
+      return {
+        ...state,
+        pokemonfilter: action.payload,
       };
     default:
       return { ...state };

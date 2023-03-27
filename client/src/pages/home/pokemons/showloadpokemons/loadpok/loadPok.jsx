@@ -12,6 +12,7 @@ export default function LoadPok() {
   const totalPokemons = pokemons?.length;
   const lastListPok = currentPage * pokPage;
   const firsListPok = lastListPok - pokPage;
+  console.log(pokemons);
 
   return (
     <div>
@@ -25,6 +26,7 @@ export default function LoadPok() {
                 type={e.types}
                 key={index}
                 id={e.id}
+                attack={e.attack}
               />
             ))
             .slice(firsListPok, lastListPok)
@@ -32,9 +34,10 @@ export default function LoadPok() {
           <ShowPok
             imagen={pokemons.image}
             name={pokemons.name}
-            type={pokemons.Type}
+            type={pokemons.types}
             key={pokemons.id}
             id={pokemons.id}
+            attack={pokemons.attack}
           />
         )}
       </div>

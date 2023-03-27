@@ -9,12 +9,10 @@ const { copyFunction } = require("./shareFunction/copyFunction.js");
 // uso en caso de tardar demasiado la peticion
 
 async function getPokByName(req, res) {
-  console.log(req.query);
   const { name } = req.query;
   const names = name.toLowerCase();
+  const name1gen = [];
   try {
-    console.log(req.query.name, names, "BYPOK IN THE ALLPOK");
-
     const dbpokemon = await Pokemon.findOne({
       where: { name: names },
       include: {
@@ -30,8 +28,18 @@ async function getPokByName(req, res) {
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${names}`
       );
-      const newPokemon = copyFunction(response);
-      res.status(200).json(newPokemon);
+      const id = response.data.id;
+      console.log(response.data);
+      if (id > 151) {
+        res
+          .status(302)
+          .json(
+            "El Pokemon que intenta buscar no pertenece a la primera generacion pokemon"
+          );
+      } else {
+        const newPokemon = copyFunction(response);
+        res.status(200).json(newPokemon);
+      }
     }
   } catch (error) {
     let err =
