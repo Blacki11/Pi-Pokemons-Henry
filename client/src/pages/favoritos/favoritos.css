@@ -1,0 +1,18 @@
+.favoritosh1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  background-color: #131b26d2;
+  padding: 30px;
+  width: 80%;
+  margin: 0 auto;
+  color: #f47575;
+}
+.centrar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 30px;
+  width: 80%;
+  margin: 0 auto;
+}

@@ -1,0 +1,21 @@
+.buttonrandom button {
+  font-weight: 700;
+  color: #f4f275;
+  padding: 9px 25px;
+  background-color: #131b26;
+  border: 1px solid #486b9f;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s ease 0s;
+}
+
+.buttonrandom a {
+  text-decoration: none;
+  color: #f4f275;
+}
+
+.buttonrandom button:hover {
+  background-color: #131b26b3;
+  color: #d7d43a;
+  transform: scale(1.1);
+}
