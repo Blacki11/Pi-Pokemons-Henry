@@ -99,7 +99,7 @@ const Create = () => {
   /* funcion para hacer la request al backend y "crear" el nuevo pokemon */
   const handleSubmit = (form) => {
     axios
-      .post("http://localhost:3001/pokemons", form)
+      .post("/pokemons", form)
       .then((res) =>
         alert(
           "Tu Pokemon a sido creado con exito, buscalo por su nombre, o en la home"

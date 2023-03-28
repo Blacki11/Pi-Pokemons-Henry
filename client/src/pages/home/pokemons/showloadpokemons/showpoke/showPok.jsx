@@ -93,7 +93,11 @@ a  poner los pokemons en favorito(corazon rojo) */
           className={`${
             where.pathname === "/Home" ? "showImagen" : "showImagenFav"
           }`}
-          src={Props.imagen}
+          src={
+            Props.imagen === undefined
+              ? "https://www.pokemon.com/static-assets/app/static3/img/og-default-image.jpeg"
+              : Props.imagen
+          }
           alt={Props.name}
         />
         <h1>

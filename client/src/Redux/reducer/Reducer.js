@@ -68,7 +68,7 @@ const rootReducer = (state = inicialState, action) => {
           pokemonFavorite: filterAPIFav,
         };
       } else {
-        const filterforType = state.pokemonfilter?.filter(
+        const filterforType = state.pokemons?.filter(
           (type) =>
             type.types?.sort().toString() === action.payload?.sort().toString()
         );

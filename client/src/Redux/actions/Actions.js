@@ -29,7 +29,7 @@ export function orderCards(pokemon) {
 
 export const getPokemon = () => {
   return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/pokemons");
+    const response = await axios.get("/pokemons");
     const pokemons = response.data;
     dispatch({ type: GETPOK, payload: pokemons });
   };
@@ -38,7 +38,7 @@ export const getPokemon = () => {
 export const actionSearch = (character) => {
   return async function (dispatch) {
     const response = await axios
-      .get(`http://localhost:3001/pokemons?name=${character}`)
+      .get(`/pokemons?name=${character}`)
       .catch(
         (err) => (
           console.log(err),
@@ -57,7 +57,7 @@ export const randomSearch = (id) => {
   return async function (dispatch) {
     const number1 = Math.floor(Math.random() * 152);
     const response = await axios
-      .get(`http://localhost:3001/pokemons/${number1}`)
+      .get(`/pokemons/${number1}`)
       .catch(
         (err) => (
           console.log(err),
@@ -78,7 +78,7 @@ export const RandomSearchTeam = () => {
     for (let i = 0; i < 6; i++) {
       const number1 = Math.floor(Math.random() * 152);
       const response = await axios
-        .get(`http://localhost:3001/pokemons/${number1}`)
+        .get(`/pokemons/${number1}`)
         .catch(
           (err) => (
             console.log(err),
@@ -98,7 +98,7 @@ export const RandomSearchTeam = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
+    const response = await axios.get(`/pokemons/${id}`);
     const idPokemons = response.data;
     dispatch({ type: DETAILS, payload: idPokemons });
   };

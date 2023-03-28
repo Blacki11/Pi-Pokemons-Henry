@@ -6,6 +6,9 @@ import Create from "./pages/createapj/create";
 import About from "./pages/about/about";
 import Nav from "./pages/nav/nav";
 import Favorite from "./pages/favoritos/favoritos";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
   const location = useLocation();
