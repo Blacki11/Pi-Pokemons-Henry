@@ -1,3 +1,4 @@
+/* Funcion general para traer la data de la api */
 const copyFunction = (obj) => {
   const responsive = obj.data;
   const newPokemon = {

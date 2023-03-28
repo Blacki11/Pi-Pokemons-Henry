@@ -13,7 +13,6 @@ const router = Router();
 
 router.use("/pokemons", pokRouter);
 router.use("/pokemons", pokidRouter); //id
-// router.use("/pokemons", poknameRouter)
 router.use("/types", allTypes);
 router.use("/pokemons", creationpokRouter);
 

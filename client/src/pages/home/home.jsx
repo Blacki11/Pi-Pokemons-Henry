@@ -1,5 +1,5 @@
 import LoadPok from "./pokemons/showloadpokemons/loadpok/loadPok";
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemon } from "../../Redux/actions/Actions";
@@ -54,11 +54,6 @@ export default function Home() {
       </div>
       <LoadPok />
       AGREGAR EL FOOTER BIEN
-      {/* <footer>
-        <h7>
-          <Link to="/About">About</Link>
-        </h7>
-      </footer> */}
     </div>
   );
 }

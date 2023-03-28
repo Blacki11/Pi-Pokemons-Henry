@@ -5,9 +5,9 @@ const { copyFunction } = require("./shareFunction/copyFunction.js");
 
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 
+/* Trae pokemons por id o uuid */
 async function getPokById(req, res) {
   try {
-    console.log(req.params);
     const { id } = req.params;
     if (id > 151)
       res

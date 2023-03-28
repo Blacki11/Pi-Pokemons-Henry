@@ -1,9 +1,0 @@
-// const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-//esto es solo de prueba
-export default function validate(userData) {
-  const errors = {};
-  if (!userData.name) {
-    errors.name = "el nombre de usuario no puede estar vacío";
-  }
-  return errors;
-}

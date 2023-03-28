@@ -82,4 +82,5 @@ export const validateType = (type) => {
   return errors;
 };
 
+/* no e agregado validacion imagenes, porque todavia no e podido subirlas, me centrare mas en el resto */
 export const validateImage = ({ image }) => {};

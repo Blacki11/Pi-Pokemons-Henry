@@ -3,15 +3,10 @@ const http = require("http");
 const { Pokemon, Type } = require("../../db.js");
 const { copyFunction } = require("./shareFunction/copyFunction.js");
 
-// const axiosInstance = axios.create({
-//   timeout: 60000 // 5 seconds
-// });
-// uso en caso de tardar demasiado la peticion
-
+/* Trae los pokemons por nombre */
 async function getPokByName(req, res) {
   const { name } = req.query;
   const names = name.toLowerCase();
-  const name1gen = [];
   try {
     const dbpokemon = await Pokemon.findOne({
       where: { name: names },
@@ -29,7 +24,6 @@ async function getPokByName(req, res) {
         `https://pokeapi.co/api/v2/pokemon/${names}`
       );
       const id = response.data.id;
-      console.log(response.data);
       if (id > 151) {
         res
           .status(302)

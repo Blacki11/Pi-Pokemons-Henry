@@ -93,7 +93,6 @@ const rootReducer = (state = inicialState, action) => {
         const ataqueFav = [...state.pokemonsallfavorite].sort(
           (a, b) => a.attack - b.attack
         );
-        console.log(ataqueFav, ataquemenor, "ATAQUES MAYORMENOR");
         return {
           ...state,
           pokemonfilter: ataquemenor,
@@ -109,7 +108,6 @@ const rootReducer = (state = inicialState, action) => {
         const ataquefavmayor = [...state.pokemonsallfavorite].sort(
           (a, b) => b.attack - a.attack
         );
-        console.log(ataquefavmayor, ataquemayor, "ATAQUES MAYORMENOR");
         return {
           ...state,
           pokemonfilter: ataquemayor,
