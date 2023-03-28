@@ -1,0 +1,25 @@
+.container {
+  border-radius: 30px;
+  display: flex;
+  height: 80%;
+  width: 80%;
+  margin: 5em auto;
+  align-items: center;
+  justify-content: center;
+  background-color: #17420d56;
+  flex-flow: wrap row;
+}
+
+.p1 {
+  color: #bdf0a7;
+  font-size: 2em;
+  margin: 0 auto;
+  padding: 10px 10px;
+}
+
+.p2 {
+  color: #bdf0a7;
+  font-size: 2em;
+  margin: 0 auto;
+  padding: 10px 10px;
+}

@@ -11,7 +11,7 @@ export default function Nav(props) {
     <div className="navcontainer navcontainer2">
       <nav className="navcontainer NavCrear">
         <ul className="navLinks">
-          <li>
+          <li className="about">
             <Link to="/About">About</Link>
           </li>
           <li className="fav">

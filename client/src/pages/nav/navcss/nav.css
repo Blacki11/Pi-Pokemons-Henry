@@ -68,6 +68,15 @@
   color: #f47575;
 }
 
+.about a {
+  color: #bdf0a7;
+  transition: 1s;
+}
+
+.about a:hover {
+  color: #50d715d7;
+}
+
 /* .container {
   max-width: 100em;
   margin: 0 auto;
