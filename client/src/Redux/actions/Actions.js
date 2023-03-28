@@ -75,7 +75,7 @@ export const randomSearch = (id) => {
 export const RandomSearchTeam = () => {
   return async function (dispatch) {
     const TeamPokemon = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const number1 = Math.floor(Math.random() * 152);
       const response = await axios
         .get(`http://localhost:3001/pokemons/${number1}`)
@@ -89,11 +89,10 @@ export const RandomSearchTeam = () => {
           )
         );
       const onlyPokemon = response.data;
-      console.log(onlyPokemon, "DENTRO DEL FOR");
+
       TeamPokemon.push(onlyPokemon);
     }
     dispatch({ type: RANDOMTEAM, payload: TeamPokemon });
-    console.log(TeamPokemon, "FUERA DEL FOR TEAM OCMPLEOT");
   };
 };
 

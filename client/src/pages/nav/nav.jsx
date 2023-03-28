@@ -5,10 +5,11 @@ import { PokRandom } from "./Random/pokerandom/pokemonRandom";
 import { TeamRandom } from "./Random/teampokemon/teamRandom";
 import "./navcss/nav.css";
 
+/* NavBar del proyecto, contiene los radomizers y los links a los diferentes lugares */
 export default function Nav(props) {
   return (
     <div className="navcontainer navcontainer2">
-      <nav className="container NavCrear">
+      <nav className="navcontainer NavCrear">
         <ul className="navLinks">
           <li>
             <Link to="/About">About</Link>
@@ -22,11 +23,13 @@ export default function Nav(props) {
           <li className="create">
             <Link to="/Create">Crear Pokemon</Link>
           </li>
+          <TeamRandom></TeamRandom>
+          <PokRandom></PokRandom>
+          <p className="searchLI">
+            <SearchBar />
+          </p>
         </ul>
       </nav>
-      <TeamRandom></TeamRandom>
-      <PokRandom></PokRandom>
-      <SearchBar />
     </div>
   );
 }

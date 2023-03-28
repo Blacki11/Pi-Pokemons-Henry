@@ -3,16 +3,19 @@ import "./filter.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
+/* Funcion Filtro por tipos para los pokemons */
 export const Filtro = ({ onChange, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState([]);
   const where = useLocation();
 
+  /* Funcion para el boton filtrar, aplica el filtro por tipos a los pokemns */
   const onsaveFilter = (e) => {
     e.preventDefault();
     return onChange(selected);
   };
 
+  /* Funcion para limpiar el filtro */
   const cleanign = (e) => {
     e.preventDefault();
     onClick(e.target.value);
@@ -25,10 +28,14 @@ export const Filtro = ({ onChange, onClick }) => {
     });
   };
 
+  /* La misma funcion de antes, si al darle click esta abierto la interfaz para ver los tipos, entonces
+     la cerrara, caso contrario la abrira(true abierta y false cerrada) */
   const toggleOptions = () => {
     setIsOpen(!isOpen);
   };
 
+  /* Como antes, y reciclando funciones, esta manda al estado los pokemons seleccionados para despues
+     aplicarlos como filtro */
   const handleOptionClick = (e) => {
     const value = e.target.value;
     const index = selected.indexOf(value);
@@ -38,6 +45,9 @@ export const Filtro = ({ onChange, onClick }) => {
       setSelected(selected.filter((item) => item !== value));
     }
   };
+
+  /* y volvemos con un tipico html, aunque un detalle a tener en cuenta, al usar la misma funcion en favorite
+     y en la home, tome prestado el css y usando uselocation tomara cierto css o uno distinto */
   return (
     <div
       className={`${
@@ -191,77 +201,3 @@ export const Filtro = ({ onChange, onClick }) => {
     </div>
   );
 };
-
-// export const Filtro = ({ onChange }) => {
-//   const onsaveFilter = (e) => {
-//     e.preventDefault();
-//     const options = [...e.target.selectedOptions];
-//     const values = options.map((option) => option.value);
-//     return onChange(values);
-//   };
-
-//   const handleFilter = (e) => {
-//     e.preventDefault();
-//     onChange(e.target.value);
-//   };
-
-//   console.log();
-
-//   return (
-//     <div>
-//       <select className="filterselect" onChange={onsaveFilter} multiple>
-//         <option className="filteroption" value="filtra">
-//           Filter
-//         </option>
-//         <option className="filteroption" value="normal">
-//           Normal
-//         </option>
-//         <option className="filteroption" value="fighting">
-//           Lucha
-//         </option>
-//         <option className="filteroption" value="flying">
-//           Volador
-//         </option>
-//         <option className="filteroption" value="poison">
-//           Veneno
-//         </option>
-//         <option className="filteroption" value="ground">
-//           Tierra
-//         </option>
-//         <option className="filteroption" value="rock">
-//           Roca
-//         </option>
-//         <option className="filteroption" value="bug">
-//           Bicho
-//         </option>
-//         <option className="filteroption" value="ghost">
-//           Fantasma
-//         </option>
-//         <option className="filteroption" value="steel">
-//           Acero
-//         </option>
-//         <option className="filteroption" value="fire">
-//           Fuego
-//         </option>
-//         <option className="filteroption" value="water">
-//           Agua
-//         </option>
-//         <option className="filteroption" value="grass">
-//           Planta
-//         </option>
-//         <option className="filteroption" value="electric">
-//           Electrico
-//         </option>
-//         <option className="filteroption" value="psychic">
-//           Psiquico
-//         </option>
-//         <option className="filteroption" value="ice">
-//           hielo
-//         </option>
-//         <option className="filteroption" value="dragon">
-//           dragon
-//         </option>
-//       </select>
-//     </div>
-//   );
-// };

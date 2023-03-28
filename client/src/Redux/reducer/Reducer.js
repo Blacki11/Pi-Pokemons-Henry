@@ -46,7 +46,6 @@ const rootReducer = (state = inicialState, action) => {
         };
       }
       if (action.payload === "BD") {
-        console.log("ENTRA AL BD", state.pokemons.Created);
         const filterBD = state.pokemons?.filter((BD) => BD.Created === true);
         const filterBDFav = state.pokemonsallfavorite?.filter(
           (BD) => BD.Created === true
@@ -69,12 +68,6 @@ const rootReducer = (state = inicialState, action) => {
           pokemonFavorite: filterAPIFav,
         };
       } else {
-        console.log(
-          state.pokemonFavorite,
-          state.pokemonfilter,
-          action.payload,
-          "TYPOS POKEMONS"
-        );
         const filterforType = state.pokemonfilter?.filter(
           (type) =>
             type.types?.sort().toString() === action.payload?.sort().toString()

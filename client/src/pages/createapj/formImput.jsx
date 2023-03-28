@@ -1,5 +1,6 @@
 import "./input.css/formimput.css";
-
+/* Funcion html, simplemente para facilitar la creacion de los stats, recibe el nombre, value, error y
+   su respectiva funcion*/
 const FormInput = ({ label, value, onChange, name, error }) => {
   return (
     <div className="DivConainerValoresNumericos">

@@ -4,13 +4,26 @@ import "./form.css";
 import { validateImage, validatenumber } from "./formfunctionvalidate";
 import { validateType } from "./formfunctionvalidate";
 
-const Form = ({ initialValues, onSubmit }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
-  const [form, setForm] = useState(initialValues);
+/* Funcion para vlidar y crear el pokemon, el initualvalue, son el nombre, imagen y stats
+   mientras que el onSubmit, es la funcion para hacer la request al back */
 
-  const [errors, setErrors] = useState({});
-  const [errorsType, setErrorsType] = useState({});
+const Form = ({ initialValues, onSubmit }) => {
+  const [isOpen, setIsOpen] =
+    useState(false); /* Estao para ver si la lista de tipos esta abierta o no */
+  const [selected, setSelected] = useState(
+    []
+  ); /* Guarda los tipos seleccionados */
+  const [form, setForm] =
+    useState(initialValues); /* Guarda el resto de la informacion */
+  const [errors, setErrors] = useState(
+    {}
+  ); /* Guarda los errores del nombre, imagen y stats del pokemon */
+  const [errorsType, setErrorsType] = useState(
+    {}
+  ); /* Guarda los errores del typo */
+
+  /* Validate, simplemente para validar algunas cosas del formulario, esta funcion expecto por el name
+   llama a otra funciones que validan tanto las imagenes y los stats del pokemon */
 
   const validate = (form) => {
     const nombrePokemon = /^[a-z0-9]{3,10}$/i;
@@ -24,9 +37,15 @@ const Form = ({ initialValues, onSubmit }) => {
     setErrors(validatenumber(form));
   };
 
+  /* Esta funcion es igual a la de arriba, solo que llama a la funcion validatetype para validar los
+tipos pokemons, esto para facilitar(al usar dos estados distintos para tipos y otro para el resto) */
+
   const validatefortype = (selected) => {
     setErrorsType(validateType(selected));
   };
+
+  /* Toma los valores de los inputs y lo envia al estado que manega los stats, nombre e imagen, por otro
+   lado, tambien llama a la funcion validate descripta lineas anteriores */
 
   const changeHandler = (event) => {
     const property = event.target.name;
@@ -36,6 +55,9 @@ const Form = ({ initialValues, onSubmit }) => {
 
     setForm({ ...form, [property]: value });
   };
+
+  /* Como el de arriba, este toma los valores de los tipos pokemon y los manda al estado, ademas tambien
+   de llamar a su funcion validate descripta anteriormente */
 
   const handleOptionClick = (e) => {
     const value = e.target.value;
@@ -49,12 +71,21 @@ const Form = ({ initialValues, onSubmit }) => {
     }
   };
 
+  /* opcion para cambiar el estado de la lista de tipos pokemon, al hacer click cambiara de false a true
+  o de true a false(true esta abierto, false esta cerrado) */
+
   const toggleOptions = () => {
     setIsOpen(!isOpen);
   };
 
+  /* El submit, estare explicando las lineas de esta funcion, pero basicamente es la que hace el trabajo
+     de alertar si hay algun tipo de error o en caso de no haber, hacer la request al backend */
+
   const submitHandler = (e) => {
     e.preventDefault();
+
+    /* Creo un nuevo objeto con la informacion de los tipos, stats, nombre e imagenes del pokemon
+       Esto porque los tipos estan en estado distinto al resto */
     const pokemonC = {
       name: form.name,
       weight: form.weight,
@@ -69,23 +100,38 @@ const Form = ({ initialValues, onSubmit }) => {
       type: selected,
     };
 
-    validate(form);
+    validate(
+      form
+    ); /* llamado a la funcion, para terminar de verificar que no haya errores */
+    validatefortype(selected); /* lo mismo pero para la validacion de tipos */
 
-    validatefortype(selected);
+    /* Este pequeño fragmento de codigo con constantes, es porque las funciones devuelven un objeto
+       asique las transformo en arrays, para despues hacerles un filtro y vaciarlas totalemtente
+       para lograr lo que prosigue en el if */
     const primero = Object.values(errors);
     const err = primero.filter((e) => e.toString() !== "");
     const segundo = Object.values(errorsType);
-
     const errtype = segundo.filter((e) => e.toString() !== "");
-    console.log(errtype, "ERROR FILTRADO");
+
+    /* Esta ultima parte de la funcion es la que verifica los errores y decide que sucedera
+       el primer IF, verifica que no haya errores en la stats, nombre e imagen, caso que encuentre
+       errores mandara un alert, la siguiente condicion, es comprobar lo mismo pero con los tipos,
+       por ultimo si no hay errores, entonces manda la funcion que conecta al backend y limpia el estado */
     if (err.length !== 0) {
-      console.log("ENTRO AL PRIMERO");
+      throw alert(
+        "Tienes que completar todos los campos antes de poder crear tu pokemon"
+      );
     } else if (errtype.length !== 0) {
       throw alert("Tienes que elegir entre 1 y 3 Tipos pokemons");
     } else {
       onSubmit(pokemonC);
+      setSelected([]);
+      setForm(initialValues);
     }
   };
+
+  /* No hay mucho que explicar, inputs con su value, su css y funciones respectivamentes
+     el elemento <FormInput/> sera explicado en su respectivo codigo */
 
   return (
     <form onSubmit={submitHandler} className="foto">

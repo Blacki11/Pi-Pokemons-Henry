@@ -1,3 +1,7 @@
+/* Esta funcion valida los "Numeros", lo que vendiran a ser las stats pokemons 
+   El primer if verefica que sea un  numero, la segunda condificon verefica que no supere
+   cierta cantidad y en caso de que ninguna se cumpla devuelve un string vacio*/
+
 export const validatenumber = (form) => {
   const numerosPokemon = /^[0-9]+$/i;
   const errors = {};
@@ -62,9 +66,12 @@ export const validatenumber = (form) => {
   return errors;
 };
 
+/* Por este lado, esta el validate para los tipos pokemons, lo primero verefica la maxima 
+   cantidad de tipos pokemons posibles, lo siguiente verefica que sea al menos 1(UNO) tipo pokemon 
+   seleccionado */
+
 export const validateType = (type) => {
   const errors = {};
-  console.log(type, "TYPEVALIDATIONFUNCTION");
   if (type.length > 3) {
     errors.type = "Has elegido demasiados Tipos, Elige hasta 3 Tipos pokemons";
   } else if (type.length === 0) {
